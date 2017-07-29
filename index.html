@@ -1,0 +1,135 @@
+﻿<!DOCTYPE HTML>
+<head>
+<title></title>
+<meta charset="utf-8">
+<script type="text/javascript">
+
+// https://www.flaticon.com/free-icon/checkbox_24374#term=music player stop&page=1&position=43
+//https://www.flaticon.com/free-icon/play_473064#term=music player&page=3&position=4
+
+</script>
+<style>
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300);
+
+body {
+	color: black;
+	font-size: 16px;
+	font-family: 'Roboto', sans-serif;
+	background-color: #6461A4;
+}
+* {
+	box-sizing: border-box;
+}
+.track {
+	width: 100%;
+	height: 58px;
+	position: relative;
+	margin-bottom: 10px;
+}
+.track__button {
+	width: 58px;
+	height: 100%;
+	position: absolute;
+	background-image: url("play.png");
+	background-repeat: no-repeat;
+	background-color: #FFFFFF;
+	cursor: pointer;
+}
+.track__button:hover {
+	background-color: #ECECEC;
+}
+.track__field {
+	width: calc(100% - 58px);
+	height: 100%;
+	position: absolute;
+	left: 58px;
+	border: 1px solid #6461A4;
+	border-left: none;
+	background-color: #FFFFFF;
+	line-height: 1.1em;
+	padding: 4px 0 0 5px;
+}
+.track__field--song {
+	font-size: 18px;
+}
+.track__field--artist {
+	font-size: 14px;
+	color: #808080;
+}
+.track__field--time {
+	background-image: url("clock.png");
+	background-repeat: no-repeat;
+	font-size: 12px;
+}
+.track__field--time span {
+	padding-left: 20px;
+}
+.active {
+	background-color: #ECECEC;
+	background-image: url("stop.png");
+}
+</style>
+</head>
+<body>
+
+	<div class="player">
+		<div class="track">
+			<div class="track__button"></div>
+			<div class="track__field">
+				<div class="track__field--song">Something In The Way</div>
+				<div class="track__field--artist">by "Nirvana"</div>
+				<div class="track__field--time"><span>0</span></div>
+			</div>
+		</div>		
+		<div class="track">
+			<div class="track__button"></div>
+			<div class="track__field">
+				<div class="track__field--song">Something In The Way</div>
+				<div class="track__field--artist">by "Nirvana"</div>
+				<div class="track__field--time"><span>0</span></div>
+			</div>
+		</div>		
+		<div class="track">
+			<div class="track__button"></div>
+			<div class="track__field">
+				<div class="track__field--song">Something In The Way</div>
+				<div class="track__field--artist">by "Nirvana"</div>
+				<div class="track__field--time"><span>0</span></div>
+			</div>
+		</div>				
+	</div>				
+	
+<script type="text/javascript">
+
+	var player = document.querySelector(".player");
+	
+	var button = document.querySelectorAll(".track__button");
+	
+	var selectedTd;
+	
+	player.onclick = function(event) {
+		var target = event.target; 
+		
+		while (target != this) {
+        if (target.className == 'track__button') {
+          active(target);
+          return;
+        }
+        target = target.parentNode;
+      } 
+	};
+	
+	function active(node){
+		console.log(node);
+		 if (selectedTd) {
+        selectedTd.classList.remove('active');
+      }
+      selectedTd = node;
+      selectedTd.classList.add('active');
+	}
+	
+	
+	
+</script>
+</body>
+</html>
