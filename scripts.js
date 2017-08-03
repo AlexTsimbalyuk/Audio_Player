@@ -11,8 +11,6 @@ player.onclick = function(event) {
 	var target = event.target; 
 	var sound = target.nextElementSibling.dataset.sound;
 	field = target.nextElementSibling;
-	minutes = field.children[2].children[0];
-	seconds = field.children[2].children[1];
 	
 	while (target != this) {  
 		if (target.className == 'track__button' || target.className == 'track__button active') { 
@@ -27,19 +25,16 @@ function playTrack(sound, press){
 	if (track.currentTime == 0 || track.paused){
 		track.src = sound;
 		track.play();
-		start();
 		press.classList.add('active');
 		playtimeAnimate(field, track);
-		
+		start();
 		timerId = setInterval(function(){	
 			if (track.ended){ 
-				setTimeout(function(){	
-					press.classList.remove('active');
-					getReset();
-					clearInterval(timerId);
-				},500);
+				press.classList.remove('active');
+				getReset();
+				clearInterval(timerId);
 			}
-		},100);
+		},60);
 	}	
 	
 	else if (track.currentTime > 0 && press.classList.contains('active')){
@@ -67,12 +62,14 @@ function playtimeAnimate(activeField, track){
 				activeField.style.boxShadow = 'none';
 				activeField.style.transition = '0.25s';
 				clearInterval(timerId);
-			},500);
+			},100);
 		}
-	}, 100);
+	}, 60);
 }
 
 function start(){
+	minutes = field.children[2].children[0];
+	seconds = field.children[2].children[1];
 	interval = setInterval(incrementTime, 1000);
 }
 
